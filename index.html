@@ -3,26 +3,26 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>PS4 Exploit Host</title>
+<title>AL MUSTAQBAL PS4 Host</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <div class="shell">
     <header class="topbar">
         <div class="brand">
-            <div class="brand-logo">PS4</div>
+            <div class="brand-logo" aria-label="AL MUSTAQBAL"></div>
             <div class="brand-text">
-                <span class="brand-name">Exploit Host</span>
-                <span class="brand-sub">WebKit Jailbreak</span>
+                <span class="brand-name">AL MUSTAQBAL</span>
+                <span class="brand-sub">المستقبل • PS4 HOST</span>
             </div>
         </div>
-        <div class="badge">JB v3.2</div>
+        <div class="badge">AL MUSTAQBAL • JB v3.2</div>
     </header>
 
     <main class="wrap">
         <section class="hero">
-            <h1 class="hero-title">PS4 <span class="accent">WebKit</span> Exploit Host</h1>
-            <p class="hero-sub">Automatic Detection &amp; Exploit Chain</p>
+            <h1 class="hero-title">AL MUSTAQBAL <span class="accent">PS4</span></h1>
+            <p class="hero-sub">واجهة المستقبل • Automatic Detection &amp; Exploit Chain</p>
         </section>
 
         <section class="status-panel">
@@ -34,45 +34,19 @@
         <section class="fw-section">
             <h2 class="fw-heading">Supported Firmware</h2>
             <div class="fw-grid">
-                <div class="fw-card" data-fw="11.00">
-                    <div class="fw-ver">11.00</div>
-                    <span class="fw-chain lapse">Lapse Chain</span>
-                </div>
-                <div class="fw-card" data-fw="11.50">
-                    <div class="fw-ver">11.50</div>
-                    <span class="fw-chain lapse">Lapse Chain</span>
-                </div>
-                <div class="fw-card" data-fw="11.52">
-                    <div class="fw-ver">11.52</div>
-                    <span class="fw-chain lapse">Lapse Chain</span>
-                </div>
-                <div class="fw-card" data-fw="12.00">
-                    <div class="fw-ver">12.00</div>
-                    <span class="fw-chain lapse">Lapse Chain</span>
-                </div>
-                <div class="fw-card" data-fw="12.02">
-                    <div class="fw-ver">12.02</div>
-                    <span class="fw-chain lapse">Lapse Chain</span>
-                </div>
-                <div class="fw-card" data-fw="12.50">
-                    <div class="fw-ver">12.50</div>
-                    <span class="fw-chain poops">Poops Chain</span>
-                </div>
-                <div class="fw-card" data-fw="12.52">
-                    <div class="fw-ver">12.52</div>
-                    <span class="fw-chain poops">Poops Chain</span>
-                </div>
-                <div class="fw-card" data-fw="13.00">
-                    <div class="fw-ver">13.00</div>
-                    <span class="fw-chain poops">Poops Chain</span>
-                </div>
+                <div class="fw-card" data-fw="11.00"><div class="fw-ver">11.00</div><span class="fw-chain lapse">Lapse Chain</span></div>
+                <div class="fw-card" data-fw="11.50"><div class="fw-ver">11.50</div><span class="fw-chain lapse">Lapse Chain</span></div>
+                <div class="fw-card" data-fw="11.52"><div class="fw-ver">11.52</div><span class="fw-chain lapse">Lapse Chain</span></div>
+                <div class="fw-card" data-fw="12.00"><div class="fw-ver">12.00</div><span class="fw-chain lapse">Lapse Chain</span></div>
+                <div class="fw-card" data-fw="12.02"><div class="fw-ver">12.02</div><span class="fw-chain lapse">Lapse Chain</span></div>
+                <div class="fw-card" data-fw="12.50"><div class="fw-ver">12.50</div><span class="fw-chain poops">Poops Chain</span></div>
+                <div class="fw-card" data-fw="12.52"><div class="fw-ver">12.52</div><span class="fw-chain poops">Poops Chain</span></div>
+                <div class="fw-card" data-fw="13.00"><div class="fw-ver">13.00</div><span class="fw-chain poops">Poops Chain</span></div>
             </div>
         </section>
     </main>
 
-    <footer class="foot">
-        <p>❤️ Special thanks to all scene developers</p>
-    </footer>
+    <footer class="foot"><p><strong>AL MUSTAQBAL PHONE • المستقبل</strong> &nbsp;|&nbsp; Special thanks to all scene developers</p></footer>
 </div>
 
 <script>
@@ -84,7 +58,6 @@
         msgs.className = 'status-text' + (cls ? ' ' + cls : '');
     }
 
-    // ========== كشف الفيرموير ==========
     var uaFull = navigator.userAgent;
     var match = uaFull.match(/PlayStation 4[ \/](\d+)\.(\d+)/i);
     var isPS4 = match !== null;
@@ -106,9 +79,6 @@
         }
     }
 
-    // ========== توجيه مستقر ==========
-    // بدون query string: عنوان الصفحة الهدف يطابق عنوان الكاش بالضبط،
-    // فيعمل التوجيه دون اتصال. كان ?bug=lapse سابقاً يكسر التطابق.
     var redirected = false;
     var reloadedOnce = false;
     var RELOAD_KEY = 'ps4host_reloaded_v1';
@@ -121,12 +91,6 @@
         window.location.replace(target);
     }
 
-    // ========== الكاش (AppCache) ==========
-    // سلوك الاستقرار (يقلّل التحمد في المحاولة الأولى):
-    //  - كاش دافئ (noupdate): بدء تلقائي -- هذه هي الحالة المستقرة.
-    //  - كاش بارد (تثبيت أول): لا بدء تلقائي أبداً، نعرض زر ▶ Run now
-    //    حتى لا تتنافس السلسلة مع تنزيل الكاش على ذاكرة WebKit.
-    //  - خطأ كاش: زر فقط (تشغيل عبر الشبكة) -- لا بدء تلقائي.
     var cacheState = 'unknown';
     var SAFETY_MS = 30000;
 
@@ -156,12 +120,10 @@
         appCache.addEventListener('noupdate', function() {
             cacheState = 'warm';
             updateStatus('✅ Cache ready -- starting...', 'success');
-            // مهلة قصيرة حتى يستقر WebKit ثم نبدأ
             setTimeout(redirectToRun, 600);
         }, false);
         appCache.addEventListener('updateready', function() {
             try { appCache.swapCache(); } catch (e) {}
-            // إعادة تحميل واحدة فقط عند التحديث، ثم نكمل من الكاش الجديد
             if (!reloadedOnce) {
                 reloadedOnce = true;
                 try { sessionStorage.setItem(RELOAD_KEY, '1'); } catch (e) {}
@@ -174,7 +136,6 @@
             }
         }, false);
         appCache.addEventListener('error', function() {
-            // الكاش فشل (لا اتصال أو الخادم مشغول) -- تشغيل عبر الشبكة بيد المستخدم
             cacheState = 'error';
             updateStatus('⚠️ Cache unavailable -- press ▶ Run now (network mode).');
             showRunButton();
@@ -187,7 +148,6 @@
     }
 
     document.addEventListener("DOMContentLoaded", function() {
-        // تمييز كارت الفيرموير المكتشف
         if (key) {
             var cards = document.querySelectorAll('.fw-card');
             for (var i = 0; i < cards.length; i++) {
@@ -210,18 +170,14 @@
         updateStatus('✅ Detected PS4 Firmware: ' + fwVersion
             + ' (' + (bug === 'lapse' ? 'Lapse' : 'Poops') + ' chain)');
 
-        // زر تشغيل يدوي متاح دائماً
         runBtn.className = 'btn';
         runBtn.addEventListener('click', redirectToRun, false);
 
-        // إن لم يوجد AppCache أصلاً نبدأ مباشرة (وضع شبكة)
         if (!appCache) {
             setTimeout(redirectToRun, 400);
             return;
         }
 
-        // شبكة أمان: مع كاش بارد/خاطئ لا نبدأ تلقائياً أبداً،
-        // فقط نؤكد ظهور الزر بعد 30 ثانية كحد أقصى
         setTimeout(function() {
             if (!redirected) {
                 updateStatus('⏳ Cache is slow -- press ▶ Run now when ready.');
