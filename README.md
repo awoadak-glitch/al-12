@@ -2,7 +2,9 @@
 
 نسخة مخصصة بهوية **المستقبل** مع الحفاظ على ملفات وآلية تشغيل المضيف كما هي.
 
-## Vercel
+## نشر مباشر على Vercel
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fawoadak-glitch%2Fal-12&project-name=al-12&repository-name=al-12)
 
 - Project name: `al-12`
 - Framework preset: Other / Static
