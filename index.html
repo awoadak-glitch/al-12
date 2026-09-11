@@ -66,26 +66,35 @@
     var match = uaFull.match(/PlayStation 4[ \/](\d+)\.(\d+)/i);
     var isPS4 = match !== null;
     var fwVersion = isPS4 ? match[1] + "." + match[2] : "Unknown";
-    var fwNum = 0;
-    var key = null;
+    var key = isPS4 ? fwVersion : null;
     var bug = null;
 
-    if (match) {
-        key = match[1] + "." + match[2];
-        fwNum = parseInt(match[1], 10) * 100 + parseInt(match[2], 10);
-    }
+    var supportedChains = {
+        "11.00": "lapse",
+        "11.50": "lapse",
+        "11.52": "lapse",
+        "12.00": "lapse",
+        "12.02": "lapse",
+        "12.50": "poops",
+        "12.52": "poops",
+        "13.00": "poops"
+    };
 
-    if (isPS4) {
-        if (fwNum <= 1202) {
-            bug = "lapse";
-        } else if (fwNum >= 1250) {
-            bug = "poops";
-        }
+    if (isPS4 && key && supportedChains[key]) {
+        bug = supportedChains[key];
     }
 
     var redirected = false;
+    var RELOAD_KEY = 'ps4host_reloaded_v2';
     var reloadedOnce = false;
-    var RELOAD_KEY = 'ps4host_reloaded_v1';
+    try {
+        reloadedOnce = sessionStorage.getItem(RELOAD_KEY) === '1';
+    } catch (e) {}
+
+    function clearReloadFlag() {
+        reloadedOnce = false;
+        try { sessionStorage.removeItem(RELOAD_KEY); } catch (e) {}
+    }
 
     function redirectToRun() {
         if (redirected || !isPS4 || !bug) return;
@@ -118,11 +127,13 @@
         }, false);
         appCache.addEventListener('cached', function() {
             cacheState = 'cold';
+            clearReloadFlag();
             updateStatus('✅ Cache installed. Press ▶ Run now to start.', 'success');
             showRunButton();
         }, false);
         appCache.addEventListener('noupdate', function() {
             cacheState = 'warm';
+            clearReloadFlag();
             updateStatus('✅ Cache ready -- starting...', 'success');
             setTimeout(redirectToRun, 600);
         }, false);
@@ -135,17 +146,20 @@
                 setTimeout(function() { location.reload(); }, 300);
             } else {
                 cacheState = 'warm';
+                clearReloadFlag();
                 updateStatus('✅ Cache updated -- starting...', 'success');
                 setTimeout(redirectToRun, 600);
             }
         }, false);
         appCache.addEventListener('error', function() {
             cacheState = 'error';
+            clearReloadFlag();
             updateStatus('⚠️ Cache unavailable -- press ▶ Run now (network mode).');
             showRunButton();
         }, false);
         appCache.addEventListener('obsolete', function() {
             cacheState = 'error';
+            clearReloadFlag();
             updateStatus('⚠️ Cache obsolete -- press ▶ Run now.');
             showRunButton();
         }, false);
